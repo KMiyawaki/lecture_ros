@@ -1,7 +1,7 @@
 # ROS
 
 - [ROS(1)](basics_01.md)
-- [ROS(2)](basics_02.md)
+- [ROS(2) 他の PC との通信](basics_02.md)
 - [Stage simulator](./stage_simulator/Home.md)
 - [ROS Parameter](parameter.md)
 - [roslaunch](roslaunch.md)
