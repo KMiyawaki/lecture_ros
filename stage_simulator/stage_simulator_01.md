@@ -10,7 +10,26 @@
 - [シミュレータ](https://github.com/KMiyawaki/oit_navigation_minibot_light_01)もインストールしておくこと。
 - 仮想環境（WSL、Virtual Box）でも実行可能。
 
-## [Stage](<(http://wiki.ros.org/stage)>)のサンプルを実行する
+## 実習で使うシミュレータのインストール
+
+インストールされているか確認する。
+
+```shell
+$ cd ~/catkin_ws/src/
+$ ls|grep minibot_light
+oit_navigation_minibot_light_01 # この表示があればインストール済み。
+```
+
+なければ下記コマンドでインストールしておく。
+
+```shell
+$ cd ~/catkin_ws/src/
+$ git clone https://github.com/KMiyawaki/oit_navigation_minibot_light_01.git
+$ git clone https://github.com/aamirhatim/twist_filter.git
+$ cd ~/catkin_ws && catkin_make
+```
+
+## [Stage](http://wiki.ros.org/stage)のサンプルを実行する
 
 - ターミナルを全て閉じて開き直し、以下のコマンドを実行。
 
