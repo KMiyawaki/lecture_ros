@@ -1,0 +1,268 @@
+# ROS(1) C++
+
+[ROS(1)](./basics_01.md)
+
+---
+
+## 簡単なパブリッシャとサブスクライバの作成(2)
+
+```shell
+$ roscd beginner_tutorials/src
+$ pwd
+/home/[user name]/catkin_ws/src/beginner_tutorials/src
+```
+
+- `src`ディレクトリに下記二つのファイルをダウンロードする。リンククリックでも良いが、ダウンロード用コマンド`wget`の実行例をリンクの後に記載しているので、それを使っても良い。
+  - [talker.cpp](https://raw.githubusercontent.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/talker/talker.cpp)
+  - [listener.py](https://raw.githubusercontent.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp)
+
+```shell
+$ wget https://raw.githubusercontent.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/talker/talker.cpp -O talker.cpp
+
+--2021-09-22 14:37:25--  https://raw.githubusercontent.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/talker/talker.cpp
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.108.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 5044 (4.9K) [text/plain]
+Saving to: ‘talker.cpp’
+
+talker.cpp                            100%[========================================================================>]   4.93K  --.-KB/s    in 0.001s  
+
+2021-09-22 14:37:25 (7.17 MB/s) - ‘talker.cpp’ saved [5044/5044]
+```
+
+```shell
+$ wget https://raw.githubusercontent.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp -O listener.cpp
+--2021-09-22 14:45:50--  https://raw.githubusercontent.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4070 (4.0K) [text/plain]
+Saving to: ‘listener.cpp’
+
+listener.cpp                              100%[=====================================================================================>]   3.97K  --.-KB/s    in 0s      
+
+2021-09-22 14:45:50 (14.3 MB/s) - ‘listener.cpp’ saved [4070/4070]
+```
+
+テキストエディタで`~catkin_ws/src/beginner_tutorials/CMakeLists.txt`を編集し、末尾に以下を貼り付ける。
+
+```text
+add_executable(talker src/talker.cpp)
+target_link_libraries(talker ${catkin_LIBRARIES})
+
+add_executable(listener src/listener.cpp)
+target_link_libraries(listener ${catkin_LIBRARIES})
+```
+
+## コンパイル
+
+以下のコマンドでコンパイルする。`C++`の場合は、ファイルを編集後、実行前に必ずコンパイルが必要である。
+
+```shell
+$ cd ~/catkin_ws && catkin_make
+Base path: /home/[user name]/catkin_ws
+Source space: /home/[user name]/catkin_ws/src
+...
+####
+#### Running command: "make cmake_check_build_system" in "/home/[user name]/catkin_ws/build"
+...
+[ 98%] Linking CXX executable /home/ubuntu/catkin_ws/devel/lib/beginner_tutorials/talker
+[100%] Linking CXX executable /home/ubuntu/catkin_ws/devel/lib/beginner_tutorials/listener
+[100%] Built target talker
+[100%] Built target listener # 100% まで表示されたら成功
+```
+
+## talker と listener の実行
+
+```shell
+$ rosrun beginner_tutorials talker
+```
+
+- エラーが出て何も起きないはず。
+  - どんなメッセージか確認する。
+  - `Ctrl+C`でプログラムを終了させる。
+- エラーが出ずに無事実行できた人は手順を飛ばしているか、勘の良い人。
+
+`rosrun [パッケージ名][ノード名]`
+
+- あるパッケージに含まれるノードを実行する。
+  - ただし、ノードの実行には原則事前に ROS マスターを起動しておくことが必要。
+- 別のターミナルを開き`roscore`を実行する。
+- さらに別のターミナルを開き次のコマンドを実行。
+
+```shell
+$ rosrun beginner_tutorials talker
+[INFO] [1581037099.621621]: hello world 0
+[INFO] [1581037099.722943]: hello world 1
+[INFO] [1581037099.822706]: hello world 2
+...
+```
+
+- さらに別のターミナルを開き次のコマンドを実行。
+
+```shell
+$ rosrun beginner_tutorials listener
+[INFO] [1581037131.453663]: I heard hello: [hello world 45]
+[INFO] [1581037131.555024]: I heard hello: [hello world 46]
+[INFO] [1581037131.658074]: I heard hello: [hello world 47]
+...
+```
+
+---
+
+## 様々な ROS のコマンド
+
+２つのノードを実行したままで、[様々な ROS のコマンド](./basics_01_commands.md)を試してみましょう。
+
+---
+
+## talker.cpp のポイント
+
+- エディタ等で`talker.cpp`を見てみる。
+
+```c++
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include <sstream>
+
+int main(int argc, char **argv)
+{
+  // 'talker'という名前でノードを生成する。
+  ros::init(argc, argv, "talker");
+  ros::NodeHandle n;
+  // 'chatter'というトピック名にデータをパブリッシュする準備。
+  ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+  ros::Rate loop_rate(10); // 10hzでループを回す。
+  int count = 0;
+  while (ros::ok())
+  {
+    std_msgs::String msg;
+
+    std::stringstream ss;
+    ss << "hello world " << count;
+    msg.data = ss.str();
+    ROS_INFO("%s", msg.data.c_str()); // 端末上に ss の内容を表示。
+    chatter_pub.publish(msg); // ss の内容をパブリッシュ。
+    ros::spinOnce();
+    loop_rate.sleep();
+    ++count;
+  }
+  return 0;
+}
+```
+
+---
+
+## listener.cpp のポイント
+
+- エディタ等で`listener.cpp`を見てみる。
+
+```c++
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+
+void chatterCallback(const std_msgs::String::ConstPtr& msg)
+{
+  // 受信したデータを表示。
+  ROS_INFO("I heard: [%s]", msg->data.c_str());
+}
+
+int main(int argc, char **argv)
+{
+  // 'listener'という名前でノードを生成する。
+  ros::init(argc, argv, "listener");
+  ros::NodeHandle n;
+  // 'chatter'というトピック名のデータを受信する準備。
+  // 受信した瞬間に chatterCallback という関数が呼ばれるようにしている。
+  ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
+  ros::spin();
+  return 0;
+}
+```
+
+### 問題(3)
+
+- ROS マスター、`talker`、`listener` を全て`Ctrl+C`で終了させなさい。
+
+---
+
+## 応用問題(2)
+
+- `talker.cpp`を次のように変更しなさい。
+
+### 修正(2-1)
+
+```C++
+#include "std_msgs/String.h"
+#include "std_msgs/Int32.h" // 追記
+```
+
+### 修正(2-2)
+
+```C++
+ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+ros::Publisher number_pub = n.advertise<std_msgs::Int32>("number", 1000); // 追記
+```
+
+---
+
+### 修正(2-3)
+
+```c++
+chatter_pub.publish(msg);
+std_msgs::Int32 num; // 追記
+num.data = count % 40; // 追記
+number_pub.publish(num); // 追記
+```
+
+- コンパイルしてから`talker`を実行しなさい。
+- `rostpic list`を使って、どのようなトピックが流れるようになったかを確認しなさい。
+- `rostopic echo`で実際にデータの内容を確認しなさい。
+
+---
+
+## 応用問題(3)
+
+- `listener.cpp`を次のように編集し、コンパイルしてから実行結果を確認しなさい。
+
+### 修正(3-1)
+
+```C++
+#include "std_msgs/String.h"
+#include "std_msgs/Int32.h" // 追記
+```
+
+### 修正(3-2)
+
+```C++
+ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
+ros::Subscriber number_sub = n.subscribe("number", 1000, numberCallback); // 追記
+```
+
+### 修正(3-3)
+
+```c++
+void chatterCallback(const std_msgs::String::ConstPtr& msg)
+{
+  ROS_INFO("I heard: [%s]", msg->data.c_str());
+}
+
+void numberCallback(const std_msgs::Int32::ConstPtr& msg)
+{
+  ROS_INFO("number: [%d]", msg->data);
+}
+```
+
+## 応用問題(4)
+
+`listener.cpp`の`numberCallback`を受信したデータに応じて以下のような出力をするように変更してください。
+
+- `msg->data`が3で割り切れるときは`Fizz`
+- `msg->data`が5で割り切れるときは`Buzz`
+- `msg->data`が3でも5で割り切れるときは`Fizz Buzz`
+- `msg->data`が3でも5で割り切れないときは`msg->data`をそのまま出力する。
+
+---
+
+[ROS(1)](./basics_01.md)
