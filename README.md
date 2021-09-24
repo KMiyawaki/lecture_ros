@@ -3,7 +3,9 @@
 - [ROS(1)](basics_01.md)
 - [ROS(2) 他の PC との通信](basics_02.md)
 - [Stage simulator](./stage_simulator/Home.md)
-- [ROS Parameter](parameter.md)
+- ROS Parameter
+  - [Python](parameter_py.md)
+  - [C++](parameter_cpp.md)
 - [roslaunch](roslaunch.md)
 - [ROS Robots](./robots/Home.md)
 - [ROS Service and Action(1)](service_action_01.md)

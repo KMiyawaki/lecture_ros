@@ -1,4 +1,4 @@
-# ROS のパラメータ
+# ROS のパラメータ (Python)
 
 [README](./README.md)
 
