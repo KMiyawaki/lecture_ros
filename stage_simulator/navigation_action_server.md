@@ -29,96 +29,21 @@ angular:
 
 ## move_base にコマンドを送る
 
-- `move_base`は`ROS navigation`メタパッケージの全体 ( SLAM 以外) を束ねるものである。
+- [move_base](http://wiki.ros.org/move_base)は`ROS navigation`メタパッケージの全体 ( SLAM 以外) を束ねるものである。
 
-  - [move_base](http://wiki.ros.org/move_base)
   - 現状でも`/cmd_vel`に速度をパブリッシュすればロボットを動かせる。しかし今やりたいのは、`move_base`が持つ、大域的・局所的な経路計画と障害物回避機能である。
   - この機能は`ROS`の`Action Server`という仕組みを使って実装されている。簡単にいうと、他の実行プログラムの機能をあたかも関数のように呼び出せる機能で、トピックを使った通信より信頼のおけるものとなっている。
 
-- スクリプトを格納するディレクトリがなければ作る。
-
-```shell
-$ roscd beginner_tutorials
-$ ls|grep scripts
-scripts # このディレクトリがあれば良い。
-$ cd scripts
-```
-
-- `scripts`に下記ファイルをダウンロードする。リンククリック->右クリック保存もしくは、リンクの下方に記述してある`wget`コマンドで取得する。
-  - [simple_navigation.py](https://raw.githubusercontent.com/KMiyawaki/lectures/master/ros/stage_simulator/navigation_action_server/simple_navigation.py)
-
-```shell
-$ wget https://raw.githubusercontent.com/KMiyawaki/lectures/master/ros/stage_simulator/navigation_action_server/simple_navigation.py
-・・・
-simple_navigation.py                         100%[===============================================================================================================================>]   1.16K  --.-KB/s    in 0s      
-
-2020-10-13 07:47:48 (27.9 MB/s) - ‘simple_navigation_local_goals.py’ saved [1191/1191]
-```
-
-- 実行権限を付けておくこと。
-- シミュレータを起動しておいてからスクリプトを実行する。
-
-```shell
-$ rosrun beginner_tutorials simple_navigation.py
-[INFO] [1581057085.133475, 13.100000]: Waiting for the move_base action server to come up
-[INFO] [1581057085.369557, 13.300000]: The server comes up
-[INFO] [1581057085.370793, 13.300000]: Sending goal
-[INFO] [1581057087.550210, 15.500000]: Finished: (3)
-```
-
-- ロボットが少し前進し停止するはず。
-- スクリプトを編集する。編集箇所は次の通り。
-
-```python
-coord_type = "base_link" # ロボットローカル座標系
-を
-coord_type = "map" # マップ座標系
-にして、
-goal.target_pose.pose.position.x = 7.0 #（x 座標変更）
-goal.target_pose.pose.position.y = 4.0 # (y 座標追記）
-```
+- [move_base にコマンドを送る (Python)](./navigation_action_server_py.md)
+- [move_base にコマンドを送る (C++)](./navigation_action_server_cpp.md)
 
 ## 課題
-
-- 以下の課題は`simple_navigation.py`に順番に実装して行けば良い。
-
-### 課題（１）
-
-- 任意の目標地点にロボットを自律移動させる関数`goto_point`を作成し、`main`関数で使用しなさい。返却値はなし。仮引数は`actionlib.SimpleActionClient`のインスタンス`ac`、目標地点の座標`x, y`
-  - 関数化するのは`simple_navigation.py`でいうと、下記の範囲である。
-    - [20行目](https://github.com/KMiyawaki/lectures/blob/master/ros/stage_simulator/navigation_action_server/simple_navigation.py#L20)～[36行目](https://github.com/KMiyawaki/lectures/blob/master/ros/stage_simulator/navigation_action_server/simple_navigation.py#L36)
-
-### 課題（２）
 
 - 任意の目標地点を数個（4 点程度）地図上に設定し、それらを順番に回っていくプログラムを作成しなさい。
   - このように最終目的地に至るまでのサブゴールをウェイポイントと呼びます。
   - 本来、ウェイポイントで停止して欲しくはないですが、現状では止まってしまう問題があります。
 - 目標地点の座標は`Stage`上の座標軸からではなく、下記の方法で読み取ること。
   - [マップ上の座標の調べ方](../how_to_get_coordinates.md)
-
-### 課題（３）
-
-- `goto_point`関数に仮引数`theta`（単位はラジアン）を追加し、目的地についたとき`theta`で指定した方向をロボットが向くようにしなさい。改良した関数を使用し、４つの座標と方向を指定してロボットを移動させなさい。
-  - ここで「ロボットの方向」とは`map`座標系での角度を意味しており、マイナス180度～プラス180度で表す。
-  - RViz で 3D ビューをズームしたとき、`map`と書かれた座標軸が見える。その X 軸方向がゼロ度で、反時計回りがプラスである。
-
-![2020-10-13_081605.png](./navigation_action_server/2020-10-13_081605.png)
-
-- 360度表記からラジアンに変換するには`import math`を加えて、`math.radians`を使う。`math.radians`は`main`関数から`goto_point`の呼び出し時に使う。
-- 角度`theta`を使って、ロボットを指定した方向に向かせるには、
-  1. 以下のインポートをまず加える。
-
-  ```python
-  from tf.transformations import quaternion_from_euler
-  from geometry_msgs.msg import Quaternion
-  ```
-
-  2. `goal.target_pose.pose.orientation`を次のように指定する。
-
-  ```python
-    q = quaternion_from_euler(0, 0, theta)
-    goal.target_pose.pose.orientation = Quaternion(q[0], q[1], q[2], q[3])
-  ```
 
 ## 参考
 
