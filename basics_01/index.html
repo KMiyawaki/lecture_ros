@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <title>talker web</title>
+  <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.js"></script>
+  <script type="text/javascript">
+    function init() {
+      const hostName = location.hostname;
+      const wsURL = 'ws://' + hostName + ':9090';
+      const divStatus = document.getElementById('status');
+      const btnMessage = document.getElementById('messageButton');
+      const inpMessage = document.getElementById('message');
+
+      const ros = new ROSLIB.Ros();
+      ros.on('error', function (error) {
+        divStatus.innerHTML = "Error";
+        btnMessage.disabled = true;
+      });
+      ros.on('connection', function (error) {
+        divStatus.innerHTML = "Connect";
+        btnMessage.disabled = false;
+      });
+      ros.on('close', function (error) {
+        divStatus.innerHTML = "Close";
+        btnMessage.disabled = true;
+      });
+      // Connect to ROS.
+      ros.connect(wsURL);
+
+      const pubChatter = new ROSLIB.Topic({
+        ros: ros,
+        name: '/chatter',
+        messageType: 'std_msgs/String'
+      });
+
+      btnMessage.addEventListener('click', function () {
+        const value = inpMessage.value;
+        const str = new ROSLIB.Message({ data: "from talker web '" + value + "'" });
+        pubChatter.publish(str);
+      })
+    }
+
+    window.addEventListener('load', init);
+  </script>
+</head>
+
+<body>
+  <h1>talker web</h1>
+  <h2>Status</h2>
+  <div id="status"></div>
+  <h2>Message</h2>
+  <input type="text" value="" id="message" maxlength="256" /><br />
+  <button id="messageButton">
+    Send
+  </button>
+</body>
+
+</html>

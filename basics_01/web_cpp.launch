@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+  <include file="$(find roswww)/launch/roswww.launch" />
+  <node pkg="beginner_tutorials" type="listener" name="listener" output="screen" />
+</launch>
