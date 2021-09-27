@@ -18,6 +18,18 @@ Unpacking ros-melodic-turtlesim (0.9.3-1bionic.20210505.020231) ...
 Setting up ros-melodic-turtlesim (0.9.3-1bionic.20210505.020231) ...
 ```
 
+```shell
+$ cd ~/setup_robot_programming
+$ ./install_ros_web.sh
+# 実行結果
+Start install ros-melodic web packages
+[sudo] password for oit: # パスワード入力
+Reading package lists... Done
+・・・
+[100%] Linking CXX executable /home/ubuntu/catkin_ws/devel/lib/robot_pose_publisher/robot_pose_publisher
+[100%] Built target robot_pose_publisher #エラー無く 100% になればOK。
+```
+
 ## ROS とは
 
 - Robot Operating System の略

@@ -187,18 +187,18 @@ int main(int argc, char **argv)
 
 ---
 
-## 応用問題(2)
+## 問題(4)
 
 - `talker.cpp`を次のように変更しなさい。
 
-### 修正(2-1)
+### 修正(4-1)
 
 ```C++
 #include "std_msgs/String.h"
 #include "std_msgs/Int32.h" // 追記
 ```
 
-### 修正(2-2)
+### 修正(4-2)
 
 ```C++
 ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
@@ -207,7 +207,7 @@ ros::Publisher number_pub = n.advertise<std_msgs::Int32>("number", 1000); // 追
 
 ---
 
-### 修正(2-3)
+### 修正(4-3)
 
 ```c++
 chatter_pub.publish(msg);
@@ -222,25 +222,25 @@ number_pub.publish(num); // 追記
 
 ---
 
-## 応用問題(3)
+## 問題(5)
 
 - `listener.cpp`を次のように編集し、コンパイルしてから実行結果を確認しなさい。
 
-### 修正(3-1)
+### 修正(5-1)
 
 ```C++
 #include "std_msgs/String.h"
 #include "std_msgs/Int32.h" // 追記
 ```
 
-### 修正(3-2)
+### 修正(5-2)
 
 ```C++
 ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
 ros::Subscriber number_sub = n.subscribe("number", 1000, numberCallback); // 追記
 ```
 
-### 修正(3-3)
+### 修正(5-3)
 
 ```c++
 void chatterCallback(const std_msgs::String::ConstPtr& msg)
@@ -254,7 +254,7 @@ void numberCallback(const std_msgs::Int32::ConstPtr& msg)
 }
 ```
 
-## 応用問題(4)
+## 問題(6)
 
 `listener.cpp`の`numberCallback`を受信したデータに応じて以下のような出力をするように変更してください。
 

@@ -177,18 +177,18 @@ if __name__ == '__main__':
 
 ---
 
-## 応用問題(2)
+## 問題(4)
 
 - `talker.py`を次のように変更しなさい。
 
-### 修正(2-1)
+### 修正(4-1)
 
 ```python
 from std_msgs.msg import String
 from std_msgs.msg import Int32 # 追記
 ```
 
-### 修正(2-2)
+### 修正(4-2)
 
 ```python
 pub = rospy.Publisher('chatter', String, queue_size=10)
@@ -198,7 +198,7 @@ number = 0 # 追記
 
 ---
 
-### 修正(2-3)
+### 修正(4-3)
 
 ```python
 pub.publish(hello_str)
@@ -212,25 +212,25 @@ number = (number + 1) % 40 # 追記
 
 ---
 
-## 応用問題(3)
+## 問題(5)
 
 - `listener.py`を次のように編集し、実行結果を確認しなさい。
 
-### 修正(3-1)
+### 修正(5-1)
 
 ```python
 from std_msgs.msg import String
 from std_msgs.msg import Int32 #追記
 ```
 
-### 修正(3-2)
+### 修正(5-2)
 
 ```python
 rospy.Subscriber('chatter', String, callback)
 rospy.Subscriber('number', Int32, callbackInt32) # 追記
 ```
 
-### 修正(3-3)
+### 修正(5-3)
 
 ```python
 def callback(data):
@@ -240,7 +240,7 @@ def callbackInt32(data): # 追記
     rospy.loginfo(rospy.get_caller_id() + 'I heard %d', data.data) # 追記
 ```
 
-## 応用問題(4)
+## 問題(6)
 
 `listener.py`の`callbackInt32(data)`を受信したデータに応じて以下のような出力をするように変更してください。
 
