@@ -101,6 +101,39 @@ SUMMARY
 
 ![2020-02-07_11-58-53.png](./stage_simulator_01/2020-02-07_11-58-53.png)
 
+## テレオペレーション
+
+ロボットをマウスやキーボード、場合によってはジョイスティックで動作させる。シミュレータを起動したまま以下のコマンドを実行しなさい。
+
+### マウステレオペ
+
+```shell
+$ rosrun  mouse_teleop mouse_teleop.py mouse_vel:=cmd_vel
+```
+
+以下のようなマウステレオペウィンドウが開く。
+
+![2020-02-07_13-14-59.png](./stage_simulator_01/2020-02-07_13-14-59.png)
+
+Mouse Teleop ウィンドウ上でマウスをドラッグすると前進・旋回速度をロボットに与えられる。
+
+- Mouse Teleop はウィンドウの「☓」マークをクリックしないと終了できないので、注意。
+
+### キーボードテレオペ
+
+```shell
+$ rosrun key_teleop key_teleop.py key_vel:=cmd_vel
+```
+
+コマンドを実行したターミナルの表示が以下のようになる。このターミナルで上下左右の矢印キーを押すとロボットが動く。
+
+```text
+  Linear: 0.000000, Angular: 0.000000
+
+
+  Use arrow keys to move, q to exit.
+```
+
 ## 参考文献
 
 - [How to Use Player/Stage](http://player-stage-manual.readthedocs.io/en/stable/)
