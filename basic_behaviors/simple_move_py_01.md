@@ -1,6 +1,6 @@
-# 一定時間動く (C++)
+# 一定時間動く (Python)
 
-[基本的な行動](./Home.md)
+[基本的な動作](./Home.md)
 
 ---
 
@@ -15,32 +15,32 @@
 ## 実習
 
 ```shell
-$ roscd beginner_tutorials/src
+$ roscd beginner_tutorials/scripts
 $ pwd
-/home/[user name]/catkin_ws/src/beginner_tutorials/src
+/home/[user name]/catkin_ws/src/beginner_tutorials/scripts
 ```
 
-- 次のファイルを`src`に保存しなさい。
-  - [simple_move.cpp](https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/basic_behaviors/simple_move/simple_move.cpp)
+- 次のファイルを`scripts`に保存しなさい。実行権限の付与を忘れないように。
+  - [simple_move.py](https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/basic_behaviors/simple_move/simple_move.py)
 
 ```shell
-$ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/basic_behaviors/simple_move/simple_move.cpp
+$ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/basic_behaviors/simple_move/simple_move.py
 ・・・
-2020-10-28 12:01:06 (2.69 MB/s) - ‘simple_move.cpp’ saved [1785/1785]
+2020-10-28 12:01:06 (2.69 MB/s) - ‘simple_move.py’ saved [1785/1785]
 
-$ chmod u+x simple_move.cpp
+$ chmod u+x simple_move.py
 $ ls -l
 ・・・
--rwxr--r-- 1 [user name] [user name] 1785 Oct 28 12:01 simple_move.cpp
+-rwxr--r-- 1 [user name] [user name] 1785 Oct 28 12:01 simple_move.py
 ```
 
 ### 実行順序
 
 - まず、[シミュレータを起動する](../stage_simulator/stage_simulator_01.md)
-- しばらくしてから`simple_move`を実行する。
+- しばらくしてから`simple_move.py`を実行する。
 
 ```shell
-$ rosrun beginner_tutorials simple_move
+$ rosrun beginner_tutorials simple_move.py
 [INFO] [1632480750.849343, 60.675000]: Executing go_straight_by_time
 ```
 
@@ -48,13 +48,13 @@ $ rosrun beginner_tutorials simple_move
 
 ## 問題
 
-- `simple_move.cpp`を修正し、直進->その場で（大体でよい）１回転-> 直進 という行動をさせなさい。
+- `simple_move.py`を修正し、直進->その場で（大体でよい）１回転-> 直進 という行動をさせなさい。
   - まずは`go_straight_by_time`関数をコピーし、`turn_by_time`という関数を作ってみよう。
   - 引数名は変えた方が良い（`linear_vel`：直進速度、`angular_vel`：回転速度）。
   - 回転速度のデフォルト値は`30度`とする。
 
-```c++
-void turn_by_time(ros::NodeHandle& n, double time_limit, double angular_vel = ???, const std::string &cmd_vel = "/cmd_vel") // 初期値はどうする？
+```python
+def turn_by_time(time_limit, angular_vel=???, cmd_vel="/cmd_vel"): # 初期値はどうする？
 ```
 
 - ロボットを四角形を描くように移動させてみよう。直進->90 度回転->直進・・・。時計回りに動いてから反時計回りに動くなど。
@@ -63,4 +63,4 @@ void turn_by_time(ros::NodeHandle& n, double time_limit, double angular_vel = ??
 
 ---
 
-[基本的な行動](./Home.md)
+[基本的な動作](./Home.md)

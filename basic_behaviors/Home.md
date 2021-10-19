@@ -5,8 +5,8 @@
 ---
 
 - 一定時間動く
-  - [Python](./simple_move_py.md)
-  - [C++](./simple_move_cpp.md)
+  - [Python](./simple_move_py_01.md)
+  - [C++](./simple_move_cpp_01.md)
 
 ---
 
