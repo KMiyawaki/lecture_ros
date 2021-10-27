@@ -44,7 +44,7 @@ $ rosrun beginner_tutorials simple_move.py
 - `go_straight_by_distance`関数を完成させなさい。
   - 仮引数`distance`で指定した距離だけ進むようにする。手順は次の通り。
     1. `while`文に入る前に、ロボットのオドメトリによる現在地を取得し、局所変数に記憶しておく。つまり、動作の開始地点。
-    2. 繰り返しのたびに、`x`、`y`と、動作の開始地点との距離を計算し、それが`distance`以上にいなったとき、`break`で`while`ループを抜ける。
+    2. 繰り返しのたびに、`x`、`y`と、動作の開始地点との距離を計算し、それが`distance`以上になったとき、`break`で`while`ループを抜ける。
   - 仮引数`time_limit`は直進の制限時間を表しているが、`main`関数で使用する際は`go_straight_by_distance(1.0, 30.0)`のように長めにしておくこと。
   - `rospy.loginfo`を使った出力では、次のようにどれだけ進んだかも表示すること。
 
