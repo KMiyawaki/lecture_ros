@@ -10,6 +10,7 @@
 - [ROS Robots](./robots/Home.md)
 - [基本的な動作](./basic_behaviors/Home.md)
 - [マップ上の座標の調べ方](./how_to_get_coordinates.md)
+- [SSH](./ssh.md)
 
 以下は発展的内容
 

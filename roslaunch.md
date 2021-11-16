@@ -2,7 +2,7 @@
 
 多数の`node`を一度に起動するための便利な仕組み。
 
-[Home.md](Home.md)
+[README](./README.md)
 
 ---
 
@@ -161,4 +161,4 @@ $ roslaunch turtle.launch
 
 ---
 
-[Home.md](Home.md)
+[README](./README.md)
