@@ -40,7 +40,7 @@ void go_straight_by_time(ros::NodeHandle& n, double time_limit, double linear_ve
     pub.publish(vel);
 }
 
-void go_straight_by_distance(ros::NodeHandle& n, double time_limit=999, double linear_vel=0.4, const std::string& topic="/odom", const std::string& cmd_vel="/cmd_vel", double msg_wait=1.0){
+void go_straight_by_distance(ros::NodeHandle& n, double distance, double time_limit=999, double linear_vel=0.4, const std::string& topic="/odom", const std::string& cmd_vel="/cmd_vel", double msg_wait=1.0){
     ROS_INFO("Executing %s", __FUNCTION__);
     ros::Publisher pub = n.advertise<geometry_msgs::Twist>(cmd_vel, 10);
     geometry_msgs::Twist vel;

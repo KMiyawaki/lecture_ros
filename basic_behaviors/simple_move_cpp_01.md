@@ -72,7 +72,8 @@ $ rosrun beginner_tutorials simple_move
 - `simple_move.cpp`を修正し、直進->その場で（大体でよい）１回転-> 直進 という行動をさせなさい。
   - まずは`go_straight_by_time`関数をコピーし、`turn_by_time`という関数を作ってみよう。
   - 引数名は変えた方が良い（`linear_vel`：直進速度、`angular_vel`：回転速度）。
-  - 回転速度のデフォルト値は`30度`とする。
+  - 回転速度のデフォルト値は`30度`とする。ただし、`angular_vel`は必ずラジアンの値を渡すようにすること。`angles::from_degrees(deg)`で、ラジアンへの変換ができる。
+    - プログラミングの世界で角度を360度表現で扱うことは稀である。`sin`、`cos`といった関数は引数にラジアンを取る。
 
 ```c++
 void turn_by_time(ros::NodeHandle& n, double time_limit, double angular_vel = ???, const std::string &cmd_vel = "/cmd_vel") // 初期値はどうする？
