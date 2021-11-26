@@ -27,11 +27,32 @@ $ pwd
 $ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/basic_behaviors/simple_move/simple_move.cpp
 ・・・
 2020-10-28 12:01:06 (2.69 MB/s) - ‘simple_move.cpp’ saved [1785/1785]
+```
 
-$ chmod u+x simple_move.cpp
-$ ls -l
-・・・
--rwxr--r-- 1 [user name] [user name] 1785 Oct 28 12:01 simple_move.cpp
+テキストエディタで`~catkin_ws/src/beginner_tutorials/CMakeLists.txt`を編集し、末尾に以下を貼り付ける。
+
+```text
+add_executable(talker src/talker.cpp)
+target_link_libraries(talker ${catkin_LIBRARIES})
+
+add_executable(listener src/listener.cpp)
+target_link_libraries(listener ${catkin_LIBRARIES})
+```
+
+## コンパイル
+
+以下のコマンドでコンパイルする。`C++`の場合は、ファイルを編集後、実行前に必ずコンパイルが必要である。
+
+```shell
+$ cd ~/catkin_ws && catkin_make
+Base path: /home/[user name]/catkin_ws
+Source space: /home/[user name]/catkin_ws/src
+...
+####
+#### Running command: "make cmake_check_build_system" in "/home/[user name]/catkin_ws/build"
+...
+[100%] Linking CXX executable /home/ubuntu/catkin_ws/devel/lib/beginner_tutorials/simple_move
+[100%] Built target simple_move  # 100% まで表示されたら成功
 ```
 
 ### 実行順序
