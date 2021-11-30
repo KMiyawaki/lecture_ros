@@ -84,6 +84,11 @@ $ ./check_laser.py
   - 5秒以内に障害物が除去された場合は0.5m程度直進してから次の地点（B）に向かいなさい。
   - 5秒以内に障害物が除去されなかった場合はスタート地点（S）に戻りなさい。
 
+## 参考文献
+
+- [ROS-Manual-for-triangular-ranging-YDLIDAR.pdf](https://www.generationrobots.com/media/ROS-Manual-for-triangular-ranging-YDLIDAR.pdf)
+  - P5に YDLIDAR X4 の座標系詳細が記述されている。
+
 ---
 
 [smach/Home](Home.md)
