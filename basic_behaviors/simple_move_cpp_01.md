@@ -32,11 +32,8 @@ $ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/basic_behavi
 テキストエディタで`~catkin_ws/src/beginner_tutorials/CMakeLists.txt`を編集し、末尾に以下を貼り付ける。
 
 ```text
-add_executable(talker src/talker.cpp)
-target_link_libraries(talker ${catkin_LIBRARIES})
-
-add_executable(listener src/listener.cpp)
-target_link_libraries(listener ${catkin_LIBRARIES})
+add_executable(simple_move src/simple_move.cpp)
+target_link_libraries(simple_move ${catkin_LIBRARIES})
 ```
 
 ## コンパイル

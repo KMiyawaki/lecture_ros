@@ -71,7 +71,7 @@ $ rosrun beginner_tutorials simple_move_with_localization.py
   - 回転速度のデフォルト値は`30度/秒`とする。
 
 ```python
-def turn_by_angle_with_localization(listener, angle, time_limit=999, angular_vel=???, topic='/odom', cmd_vel="/cmd_vel", msg_wait=1.0) # 初期値はどうする？
+def turn_by_angle_with_localization(listener, angle, time_limit=999, angular_vel=???, cmd_vel="/cmd_vel") # 初期値はどうする？
 ```
 
 - 角度の場合は距離のときと異なり、－180度～＋180度で表現される点に注意が必要です。

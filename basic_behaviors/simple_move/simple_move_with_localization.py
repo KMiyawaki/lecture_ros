@@ -27,7 +27,7 @@ def get_localized_pose(listener, time_limit=10.0, target='map', source='base_lin
         raise e
 
 
-def go_straight_by_distance_with_localization(listener, distance, time_limit=999, linear_vel=0.4, topic='/odom', cmd_vel="/cmd_vel", msg_wait=1.0):
+def go_straight_by_distance_with_localization(listener, distance, time_limit=999, linear_vel=0.4, cmd_vel="/cmd_vel"):
     func = sys._getframe().f_code.co_name
     rospy.loginfo('Executing ' + func)
     pub = rospy.Publisher(cmd_vel, Twist, queue_size=10)

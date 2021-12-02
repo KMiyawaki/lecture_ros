@@ -6,12 +6,18 @@
 #include <tf/tf.h>
 #include <tf/transform_listener.h>
 
-bool get_localized_pose(tf::TransformListener &listener, geometry_msgs::Pose2D& result, double time_limit = 10.0, const std::string &target = "map", const std::string &source = "base_link")
+bool get_localized_pose(tf::TransformListener &listener, geometry_msgs::Pose2D &result,
+                        double time_limit = 10.0, const std::string &target = "map", const std::string &source = "base_link")
 {
     try
     {
         tf::StampedTransform transform;
-        listener.waitForTransform(target, source, ros::Time(0), ros::Duration(time_limit));
+        std::string error_msg;
+        if (listener.waitForTransform(target, source, ros::Time(0), ros::Duration(time_limit), ros::Duration(0.01), &error_msg) == false)
+        {
+            ROS_ERROR("%s:%s", __FUNCTION__, error_msg.c_str());
+            return false;
+        }
         listener.lookupTransform(target, source, ros::Time(0), transform);
         tf::Matrix3x3 m(transform.getRotation());
         double roll, pitch, yaw;
@@ -21,53 +27,60 @@ bool get_localized_pose(tf::TransformListener &listener, geometry_msgs::Pose2D& 
         result.theta = yaw;
         return true;
     }
-    catch (tf::TransformException &ex)
+    catch (tf::LookupException &ex)
     {
-        ROS_ERROR("%s", ex.what());
+        ROS_ERROR("%s:%s", __FUNCTION__, ex.what());
         return false;
     }
+    catch (tf::ConnectivityException &ex)
+    {
+        ROS_ERROR("%s:%s", __FUNCTION__, ex.what());
+        return false;
+    }
+    catch (tf::ExtrapolationException &ex)
+    {
+        ROS_ERROR("%s:%s", __FUNCTION__, ex.what());
+        return false;
+    } 
 }
-/*
 
-def go_straight_by_distance_with_localization(listener, distance, time_limit=999, linear_vel=0.4, topic='/odom', cmd_vel="/cmd_vel", msg_wait=1.0):
-    func = sys._getframe().f_code.co_name
-    rospy.loginfo('Executing ' + func)
-    pub = rospy.Publisher(cmd_vel, Twist, queue_size=10)
-    vel = Twist()
-    vel.linear.x = linear_vel
-    vel.linear.y = 0
-    vel.linear.z = 0
-    vel.angular.x = 0
-    vel.angular.y = 0
-    vel.angular.z = 0
-    diff = 0
-    start_time = rospy.get_time()
+void go_straight_by_distance_with_localization(ros::NodeHandle &n, tf::TransformListener &listener,
+                                               double distance, double time_limit = 999, double linear_vel = 0.4,
+                                               const std::string &cmd_vel = "/cmd_vel")
+{
+    ROS_INFO("Executing %s", __FUNCTION__);
+    ros::Publisher pub = n.advertise<geometry_msgs::Twist>(cmd_vel, 10);
+    geometry_msgs::Twist vel;
+    vel.linear.x = linear_vel;
+    vel.linear.y = 0;
+    vel.linear.z = 0;
+    vel.angular.x = 0;
+    vel.angular.y = 0;
+    vel.angular.z = 0;
+    double diff = 0;
+    ros::Rate rate(10);
+    double start_time = ros::Time::now().toSec();
+    while (diff < time_limit)
+    {
+        geometry_msgs::Pose2D pose;
+        if (get_localized_pose(listener, pose))
+        {
+            ROS_INFO("Recv localized pose. (x, y, theta) d = (%.2f, %.2f, %.2f)",
+                     pose.x, pose.y, angles::to_degrees(pose.theta));
+        }
+        pub.publish(vel);
+        rate.sleep();
+        diff = ros::Time::now().toSec() - start_time;
+    }
+    vel.linear.x = 0.0;
+    pub.publish(vel);
+}
 
-    while diff < time_limit:
-        try:
-            (x, y, yaw) = get_localized_pose(listener)
-        except Exception as e:
-            rospy.logerr(str(e))
-            return
-
-        rospy.loginfo(
-            'Recv localized pose. (x, y, theta) = (%.2f, %.2f, %.2f)', x, y, math.degrees(yaw))
-
-        pub.publish(vel)
-        rospy.sleep(0.1)
-        diff = rospy.get_time() - start_time
-    vel.linear.x = 0.0
-    pub.publish(vel)
-
-
-def main():
-    rospy.init_node('simple_move')
-    rospy.loginfo("C19XXX ロボット　太郎")  # 受講者の情報を表示する。
-    rospy.sleep(1)  # 起動直後は rospy.Time.now() がゼロを返す．
-    listener = tf.TransformListener()  # このクラスのインスタンス生成は一度だけ。
-    go_straight_by_distance_with_localization(listener, 2.0, 3.0)
-
-
-if __name__ == '__main__':
-    main()
-*/
+int main(int argc, char **argv)
+{
+    ros::init(argc, argv, "simple_move_with_localization");
+    ros::NodeHandle n;
+    tf::TransformListener listener;                                    // このクラスのインスタンス生成は一度だけ。
+    ros::Duration(1.0).sleep();                                        // 起動直後は rospy.Time.now() がゼロを返す．
+    go_straight_by_distance_with_localization(n, listener, 2.0, 3.0);
+}
