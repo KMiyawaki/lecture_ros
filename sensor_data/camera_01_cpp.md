@@ -89,15 +89,15 @@ data: "R 2376"
 ## 問題(1)
 
 - 上記のプログラムはカメラ画像を受信し赤い領域を抽出してその画素数を出力している。
-- 実機でも赤い物体をカメラの前にかざして実行しなさい。ただし、
-  - 実機側でソフトのアップデートをしていない場合は実施すること。下記リンク先の下の方に方法が記載されています。
+- 実機でも赤い物体をカメラの前にかざして実行しなさい。
+  - ただし、実機側でソフトのアップデートをしていない場合は実施すること。下記リンク先の下の方に方法が記載されています。
   - [ソフトのアップデート](https://github.com/KMiyawaki/oit_navigation_minibot_light_01#%E3%82%BD%E3%83%95%E3%83%88%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88)
 - パラメータ調整をしないと検出されない可能性が高いです。その場合は`image_processing.cpp`のパラメータ調整が必要です。
 - まず、以下の方法で`H`の値を調べなさい。
 
 ### 最適なHの値を調べる
 
-- まず、実機カメラから得られる画像を保存します。`roslaunch oit_navigation_minibot_light_01 navigation.launch`で実機を起動しなさい。
+- 実機カメラから得られる画像を保存します。`roslaunch oit_navigation_minibot_light_01 navigation.launch`で実機を起動しなさい。
 - 次のコマンドを実機ターミナルから実行しなさい。`SSH`接続した端末からでも構いません。
 
 ```shell
@@ -109,7 +109,7 @@ $ rosrun oit_navigation_minibot_light_01 image_capture.py
 [キャプチャ画像のサンプル](./camera/sample.jpg)
 
 - 保存できた画像を手元のPCにVSCode経由でダウンロードし、赤い物体の`HSV`値を調べなさい。
-  - これには[gimp](https://forest.watch.impress.co.jp/library/software/gimp/)のペイントソフトでスポイトツールを利用するなどの方法があります。
+  - これには[gimp](https://forest.watch.impress.co.jp/library/software/gimp/)のようなペイントソフトでスポイトツールを利用するなどの方法があります。
 - このようにして調べた`H`の値を`OpenCV`で利用する際は**値を1/2にする**ことを忘れないようにしてください。
 
 ### パラメータを設定する
