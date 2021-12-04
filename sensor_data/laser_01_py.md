@@ -1,6 +1,6 @@
 # レーザレンジファインダのデータを使う
 
-[smach/Home](Home.md)
+[Home](./Home.md)
 
 ---
 
@@ -92,4 +92,4 @@ $ ./check_laser.py
 
 ---
 
-[smach/Home](Home.md)
+[Home](./Home.md)
