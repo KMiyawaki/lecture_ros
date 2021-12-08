@@ -111,6 +111,7 @@ void turn_by_angle_with_localization(ros::NodeHandle& n, tf::TransformListener &
 - `go_straight_by_distance_with_localization`、`turn_by_angle_with_localization`を使って、ロボットを四角形を描くように移動させてみよう。直進->90 度回転->直進・・・。時計回りに動いてから反時計回りに動くなど。
   - シミュレーションのロボットは自分の都合の良い位置に自由に移動させて構わない。
 - 作成したプログラムを実機でも試してみよう。オドメトリのときと比べてどうだろうか。
+  - 実機の場合は[ナビゲーション起動コマンド](https://github.com/KMiyawaki/oit_navigation_minibot_light_01#%E3%83%8A%E3%83%93%E3%82%B2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3)を実行してから自分のプログラムを実行すること。
 
 ### 問題（４）
 
