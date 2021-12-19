@@ -23,6 +23,11 @@ $ pwd
 $ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/sensor_data/camera/color_tracking.py
 ・・・
 2020-10-28 12:01:06 (2.69 MB/s) - ‘color_tracking.py’ saved [1785/1785]
+
+$ chmod u+x color_tracking.py
+$ ls -l
+・・・
+-rwxr--r-- 1 [user name] [user name] 1785 Oct 28 12:01 color_tracking.py
 ```
 
 ### 実行順序
