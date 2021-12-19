@@ -8,6 +8,8 @@
   - [Python](./laser_01_py.md)
 - カメラのデータを使う
   - [C++](./camera_01_cpp.md)
+- カメラのデータを使う（２）**Pythonのみ**
+  - [Python](./camera_02_py.md)
 
 ---
 
