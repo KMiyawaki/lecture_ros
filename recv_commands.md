@@ -34,7 +34,7 @@ $ ls -l
 - しばらくしてから`recv_commands.py`を実行する。
 
 ```shell
-s$ rosrun beginner_tutorials recv_commands.py
+$ rosrun beginner_tutorials recv_commands.py
 [INFO] [1640765754.038343, 0.000000]: C19XXX 工大 太郎
 [INFO] [1640765754.298499, 1103.000000]: The server comes up
 [INFO] [1640765754.304402, 1103.000000]: Executing check_command
@@ -44,7 +44,8 @@ s$ rosrun beginner_tutorials recv_commands.py
 - さらに別ターミナルで次のコマンドを実行する。
 
 ```shell
-rostopic pub -1 /chatter std_msgs/String "data: 'go_forward_1.0'"
+$ rostopic pub -1 /chatter std_msgs/String "data: 'go_forward_1.0'"
+publishing and latching message for 3.0 seconds
 ```
 
 - すると、最初のコマンドを実行したターミナルで次のように表示される。
