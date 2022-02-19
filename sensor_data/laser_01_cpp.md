@@ -1,4 +1,4 @@
-# レーザレンジファインダのデータを使う (Python)
+# レーザレンジファインダのデータを使う (C++)
 
 [Home](./Home.md)
 
@@ -9,36 +9,53 @@
 ```shell
 $ roscd beginner_tutorials/scripts
 $ pwd
-/home/[user name]/catkin_ws/src/beginner_tutorials/scripts
+/home/[user name]/catkin_ws/src/beginner_tutorials/src
 ```
 
-- 次のファイルを`scripts`にダウンロードし実行しなさい。
-  - [check_laser.py](https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/sensor_data/laser/check_laser.py)
+- 次のファイルを`src`にダウンロードし実行しなさい。
+  - [check_laser.cpp](https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/sensor_data/laser/check_laser.cpp)
 
 ```shell
-$ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/sensor_data/laser/check_laser.py
+$ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/sensor_data/laser/check_laser.cpp
 ・・・
-2020-10-28 12:01:06 (2.69 MB/s) - ‘check_laser.py’ saved [1785/1785]
+2020-10-28 12:01:06 (2.69 MB/s) - ‘check_laser.cpp’ saved [1785/1785]
+```
 
-$ chmod u+x check_laser.py
-$ ls -l
-・・・
--rwxr--r-- 1 [user name] [user name] 1785 Oct 28 12:01 check_laser.py
+テキストエディタで`~catkin_ws/src/beginner_tutorials/CMakeLists.txt`を編集し、末尾に以下を貼り付ける。
+
+```text
+add_executable(check_laser src/check_laser.cpp)
+target_link_libraries(check_laser ${catkin_LIBRARIES})
+```
+
+## コンパイル
+
+以下のコマンドでコンパイルする。`C++`の場合は、ファイルを編集後、実行前に必ずコンパイルが必要である。
+
+```shell
+$ cd ~/catkin_ws && catkin_make
+Base path: /home/[user name]/catkin_ws
+Source space: /home/[user name]/catkin_ws/src
+...
+####
+#### Running command: "make cmake_check_build_system" in "/home/[user name]/catkin_ws/build"
+...
+[100%] Linking CXX executable /home/ubuntu/catkin_ws/devel/lib/beginner_tutorials/check_laser
+[100%] Built target check_laser  # 100% まで表示されたら成功
 ```
 
 ### 実行順序
 
 - まず、[シミュレータを起動する](../stage_simulator/stage_simulator_01.md)
-- しばらくしてから`check_laser.py`を実行する。
+- しばらくしてから`check_laser`を実行する。
 
 ```shell
-$ rosrun beginner_tutorials check_laser.py
-[INFO] [1638258317.238613, 0.000000]: C19XXX 工大 太郎
+$ rosrun beginner_tutorials check_laser
 [INFO] [1638258318.313909, 3270.650000]: Executing check_laser
 [INFO] [1638258318.322379, 3270.650000]: is_simulation = True
-[INFO] [1638258318.366697, 3270.700000]: Recv msg. class = LaserScan
-[INFO] [1638258318.490554, 3270.825000]: Recv msg. class = LaserScan
-[INFO] [1638258318.613752, 3270.950000]: Recv msg. class = LaserScan
+[INFO] [1638258318.366697, 3270.700000]: Recv LaserScan
+[INFO] [1638258318.490554, 3270.825000]: Recv LaserScan
+[INFO] [1638258318.613752, 3270.950000]: Recv LaserScan
 ・・・
 ```
 
@@ -46,21 +63,20 @@ $ rosrun beginner_tutorials check_laser.py
 
 - 上記のプログラムはレーザレンジファインダのデータを受信しメッセージを表示している。
 
-- `check_laser.py`を編集し`LaserScan`のスキャンデータの個数を画面に出力しなさい。
+- `check_laser.cpp`を編集し`LaserScan`のスキャンデータの個数を画面に出力しなさい。
   - `sensor_msgs/LaserScan`の中身は[ここ](http://docs.ros.org/api/sensor_msgs/html/msg/LaserScan.html)
 - 次いで、スキャンデータの配列において、中央の要素の値を画面に出力しなさい。単に要素数を２で割り実数部を切り捨てればよい。
 
 シミュレータでの実行例
 
 ```shell
-$ ./check_laser.py 
-[INFO] [1638258679.854985, 0.000000]: C19XXX 工大 太郎
+$ ./check_laser.cpp 
 [INFO] [1638258680.892022, 3633.225000]: Executing check_laser
 [INFO] [1638258680.903774, 3633.225000]: is_simulation = True
-[INFO] [1638258680.945945, 3633.275000]: Recv msg. class = LaserScan, num = 720, dist = 0.990009
-[INFO] [1638258681.127661, 3633.450000]: Recv msg. class = LaserScan, num = 720, dist = 1.290012
-[INFO] [1638258681.290543, 3633.625000]: Recv msg. class = LaserScan, num = 720, dist = 1.290012
-[INFO] [1638258681.439832, 3633.775000]: Recv msg. class = LaserScan, num = 720, dist = 1.550015
+[INFO] [1638258680.945945, 3633.275000]: Recv LaserScan, num = 720, dist = 0.990009
+[INFO] [1638258681.127661, 3633.450000]: Recv LaserScan, num = 720, dist = 1.290012
+[INFO] [1638258681.290543, 3633.625000]: Recv LaserScan, num = 720, dist = 1.290012
+[INFO] [1638258681.439832, 3633.775000]: Recv LaserScan, num = 720, dist = 1.550015
 ```
 
 ## 問題(2)
