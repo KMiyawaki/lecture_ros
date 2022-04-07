@@ -28,6 +28,8 @@ int main(int argc, char **argv)
 }
 ```
 
+- 編集後はコンパイルを忘れないこと。
+
 ### 実行順序
 
 - まず、[シミュレータを起動する](../stage_simulator/stage_simulator_01.md)
