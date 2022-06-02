@@ -49,6 +49,11 @@ goal.target_pose.pose.position.x = 7.0 #（x 座標変更）
 goal.target_pose.pose.position.y = 3.0 # (y 座標追記）
 ```
 
+## 練習問題
+
+- 目的地の座標を自由に変更してみなさい。なお、座標によっては到達できない場合もあります。
+- ２か所以上の目的地を順番に回るようにしてみなさい。
+
 ## 課題
 
 - 以下の課題は`simple_navigation_goals.py`に順番に実装して行けば良い。
@@ -59,7 +64,7 @@ goal.target_pose.pose.position.y = 3.0 # (y 座標追記）
   - 関数化するのは`simple_navigation_goals.py`でいうと、下記の範囲である。
     - [20行目](https://github.com/KMiyawaki/lecture_ros/blob/main/stage_simulator/navigation_action_server/simple_navigation_goals.py#L20)～[36行目](https://github.com/KMiyawaki/lecture_ros/blob/main/stage_simulator/navigation_action_server/simple_navigation_goals.py#L36)
 
-### 課題（３）
+### 課題（２）
 
 - `goto_point`関数に仮引数`theta`（単位はラジアン）を追加し、目的地についたとき`theta`で指定した方向をロボットが向くようにしなさい。改良した関数を使用し、４つの座標と方向を指定してロボットを移動させなさい。
   - ここで「ロボットの方向」とは`map`座標系での角度を意味しており、マイナス180度～プラス180度で表す。
