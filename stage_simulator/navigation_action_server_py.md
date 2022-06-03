@@ -26,7 +26,12 @@ simple_navigation_goals.py                         100%[========================
 2020-10-13 07:47:48 (27.9 MB/s) - simple_navigation_goals.py’ saved [1191/1191]
 ```
 
-- 実行権限を付けておくこと。
+- 次のコマンドで実行権限を付けておくこと。
+
+```shell
+$ chmod u+x simple_navigation_goals.py
+```
+
 - シミュレータを起動しておいてからスクリプトを実行する。
 
 ```shell
@@ -52,6 +57,7 @@ goal.target_pose.pose.position.y = 3.0 # (y 座標追記）
 ## 練習問題
 
 - 目的地の座標を自由に変更してみなさい。なお、座標によっては到達できない場合もあります。
+  - 地図上の座標の調べ方は [マップ上の座標の調べ方](../how_to_get_coordinates.md) を参照してください。
 - ２か所以上の目的地を順番に回るようにしてみなさい。
 
 ## 課題
