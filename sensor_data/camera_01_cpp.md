@@ -27,14 +27,7 @@ $ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/sensor_data/
 2020-10-28 12:01:06 (2.69 MB/s) - ‘image_processing.cpp’ saved [1785/1785]
 ```
 
-テキストエディタで`~catkin_ws/src/beginner_tutorials/CMakeLists.txt`を編集し、末尾に以下を貼り付ける。
-
-```text
-add_executable(image_processing src/image_processing.cpp)
-target_link_libraries(image_processing ${catkin_LIBRARIES})
-```
-
-さらに以下を追記する。
+テキストエディタで`~catkin_ws/src/beginner_tutorials/CMakeLists.txt`を編集し、以下の一行を挿入する。
 
 ```text
 find_package(catkin REQUIRED COMPONENTS
@@ -44,6 +37,15 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge # 追記
 )
 ```
+
+さらに末尾に以下を貼り付ける。
+
+```text
+add_executable(image_processing src/image_processing.cpp)
+target_link_libraries(image_processing ${catkin_LIBRARIES})
+```
+
+さらに以下を追記する。
 
 ## コンパイル
 
