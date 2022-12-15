@@ -30,12 +30,12 @@ class SensorMessageGetter(object):
 
 def image_processing(cv_image_in, pub_cmd_vel):
     func = sys._getframe().f_code.co_name
-    width = cv_image_in.shape[0]
-    height = cv_image_in.shape[1]
+    height = cv_image_in.shape[0]
+    width = cv_image_in.shape[1]
     channels = cv_image_in.shape[2]
     kernel = np.ones((5, 5), np.uint8)
     rospy.loginfo("%s: Recv image (%d x %d)", func, width, height)
-    cv_result = np.zeros((width, height, channels), dtype="uint8")  # 処理結果の画像
+    cv_result = np.zeros((height, width, channels), dtype="uint8")  # 処理結果の画像
     hsv = cv2.cvtColor(cv_image_in, cv2.COLOR_BGR2HSV)  # HSV 形式に変換
     red = cv2.inRange(hsv, (0, 40, 40), (40, 255, 255))  # ここのパラメータを調整する
     red_pixels = cv2.countNonZero(red)  # 赤の画素数を数える
