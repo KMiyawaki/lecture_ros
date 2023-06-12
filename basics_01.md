@@ -1,4 +1,4 @@
-# ROS(1)
+# ROS の概要
 
 [README](./README.md)
 
@@ -9,6 +9,7 @@
 以下のコマンドで必要なソフトをインストールしておくこと。
 
 ```shell
+$ sudo apt update
 $ sudo apt-get install -y ros-melodic-turtlesim
 [sudo] password for [user name]: # パスワード入力 
 Reading package lists... Done
@@ -16,18 +17,6 @@ Building dependency tree
  ...
 Unpacking ros-melodic-turtlesim (0.9.3-1bionic.20210505.020231) ...
 Setting up ros-melodic-turtlesim (0.9.3-1bionic.20210505.020231) ...
-```
-
-```shell
-$ cd ~/setup_robot_programming
-$ ./install_ros_web.sh
-# 実行結果
-Start install ros-melodic web packages
-[sudo] password for oit: # パスワード入力
-Reading package lists... Done
-・・・
-[100%] Linking CXX executable /home/ubuntu/catkin_ws/devel/lib/robot_pose_publisher/robot_pose_publisher
-[100%] Built target robot_pose_publisher #エラー無く 100% になればOK。
 ```
 
 ## ROS とは
@@ -176,6 +165,17 @@ source ~/catkin_ws/devel/setup.bash
 
 ## catkin_create_pkg コマンドによるパッケージの作成
 
+**まず、自分の環境に`beginner_tutorials`パッケージがあるかどうかを確認すること。**
+
+```shell
+$ cd ~/catkin_ws/src
+$ ls|grep beginner
+beginner_tutorials # この表示があれば、beginner_tutorialsは存在している。
+```
+
+`beginner_tutorials`パッケージが **「ないときだけ」** 以下を実行する。  
+**ただし、これからパッケージを自作することもあるため、以下のコマンドは覚えておいたほうが良い**
+
 - 第一引数：作成するパッケージの名前（例：`beginner_tutorials`）
 - 第二引数以降：使用する機能（例：`std_msgs rospy roscpp`）を指定。
 
@@ -190,9 +190,6 @@ Successfully created files in /home/[user name]/catkin_ws/src/beginner_tutorials
 $ cd ~/catkin_ws
 $ catkin_make
 ```
-
-- ここでターミナルを閉じる
-  - 必須の操作ではない。演習の都合上の操作。
 
 ---
 
@@ -231,6 +228,9 @@ $ roscd beginner_tutorials
 
 ## 簡単なパブリッシャとサブスクライバの作成(2)
 
+以下、言語ごとに異なるページを用意している。  
+**飛ばさずにリンク先を実施すること**
+
 - [Python](./basics_01_py.md)
 - [C++](./basics_01_cpp.md)
 
@@ -240,14 +240,6 @@ $ roscd beginner_tutorials
 
 - ROS の`std_msg`について調べなさい。
   - `String`以外にどのような型が用意されているか、[std_msgs](http://wiki.ros.org/std_msgs)を参考に調べなさい。
-
----
-
-## 発展課題(1)
-
-- 2 人組になり[複数の PC で ROS の通信を行う設定](./basics_02.md)を行い、双方で`talker.py`と`listener.py`を動かし通信しなさい。
-- `talker.py`が出力するデータを好きな文字に変えて再び実行し、通信相手にメッセージを届けなさい。
-- マスタとスレーブの役割を交代しながら実施すること。
 
 ---
 

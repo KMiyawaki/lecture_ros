@@ -60,7 +60,7 @@ def go_straight_by_distance_with_localization(listener, distance, time_limit=999
 
 def main():
     rospy.init_node('simple_move')
-    rospy.loginfo("C19XXX ロボット　太郎")  # 受講者の情報を表示する。
+    rospy.loginfo("C19XXX Robot Taro")  # 受講者の情報を表示する。
     rospy.sleep(1)  # 起動直後は rospy.Time.now() がゼロを返す．
     listener = tf.TransformListener()  # このクラスのインスタンス生成は一度だけ。
     go_straight_by_distance_with_localization(listener, 2.0, 3.0)

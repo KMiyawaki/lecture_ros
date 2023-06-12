@@ -93,7 +93,7 @@ def go_straight_by_distance(distance, time_limit=999, linear_vel=0.4, topic='/od
 
 def main():
     rospy.init_node('simple_move')
-    rospy.loginfo("C19XXX ロボット　太郎")  # 受講者の情報を表示する。
+    rospy.loginfo("C19XXX Robot Taro")  # 受講者の情報を表示する。
     rospy.sleep(1)  # 起動直後は rospy.Time.now() がゼロを返す．
     go_straight_by_time(2.0)
 

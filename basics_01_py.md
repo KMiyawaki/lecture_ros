@@ -1,22 +1,51 @@
-# ROS(1) Python
+# 簡単なパブリッシャとサブスクライバの作成(2) Python
 
-[ROS(1)](./basics_01.md)
+[ROS の概要](./basics_01.md)
 
 ---
 
 ## 簡単なパブリッシャとサブスクライバの作成(2)
 
+`ROS`では、`Python`のスクリプトをパッケージの`scripts`ディレクトリに格納することが一般的である。  
+まず、ディレクトリがあるかどうかを確認し、無ければ作成しよう。
+
 ```shell
 $ roscd beginner_tutorials
+$ ls
+CMakeLists.txt  include  package.xml  scripts  src # scripts という文字が見えるならディレクトリは存在している。
+# もしもディレクトリが無ければ以下を実施する。
 $ mkdir scripts
-$ cd scripts
-$ pwd
-/home/[user name]/catkin_ws/src/beginner_tutorials/scripts
+$ ls # ディレクトリができているかどうかを確認する。
 ```
 
-- `scripts`ディレクトリに下記二つのファイルをダウンロードする。リンククリックでも良いが、ダウンロード用コマンド`wget`の実行例をリンクの後に記載しているので、それを使っても良い。
-  - [talker.py](https://raw.github.com/ros/ros_tutorials/kinetic-devel/rospy_tutorials/001_talker_listener/talker.py)
-  - [listener.py](https://raw.github.com/ros/ros_tutorials/kinetic-devel/rospy_tutorials/001_talker_listener/listener.py)
+`scripts`ディレクトリに移動する。
+
+```shell
+$ cd scripts
+$ pwd
+/home/[user name]/catkin_ws/src/beginner_tutorials/scripts # 現在の作業ディレクトリの絶対パスを確認する。
+```
+
+`scripts`ディレクトリに使用する二つのファイルがあるかどうかを確認する。
+
+```shell
+$ ls -l
+total 8
+-rwxr--r-- 1 ubuntu ubuntu 2406 Dec 22 09:14 listener.py
+-rwxr--r-- 1 ubuntu ubuntu 2217 Dec 22 09:14 talker.py
+```
+
+ここで確認することは以下である。
+
+- `listener.py`と`talker.py`の二つのファイルが存在していること。
+- 二つのファイルの先頭にある記号列`-rwxr--r--`の先頭4文字が`-rwx`と`x`の記号が付いていること。
+  - これを「ファイルに対してユーザの実行権限がある」という。詳細は省くが、この`x`が無いと後述するコマンドで実行することはできない。
+
+もしも、ファイルが無ければ、以下の方法で`scripts`ディレクトリに下記二つのファイルをダウンロードする。  
+リンククリックでも良いが、ダウンロード用コマンド`wget`の実行例をリンクの後に記載しているので、それを使っても良い。
+
+- [talker.py](https://raw.github.com/ros/ros_tutorials/kinetic-devel/rospy_tutorials/001_talker_listener/talker.py)
+- [listener.py](https://raw.github.com/ros/ros_tutorials/kinetic-devel/rospy_tutorials/001_talker_listener/listener.py)
 
 ```shell
 $ wget https://raw.githubusercontent.com/ros/ros_tutorials/kinetic-devel/rospy_tutorials/001_talker_listener/talker.py -O talker.py
@@ -38,17 +67,7 @@ listener.py                               100%[=================================
 2020-10-07 15:40:19 (7.51 MB/s) - ‘listener.py’ saved [2406/2406]
 ```
 
-- VSCode でダウンロードした二つのファイルの上から２行目に`# -*- coding: utf-8 -*-`と追記し、日本語が使えるようにしておく。
-
-```python
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# Software License Agreement (BSD License)
-```
-
-### 問題(2)
-
-- ダウンロードした 2 つのファイルにユーザの実行権限をつけなさい。
+- ダウンロードした場合は 2 つのファイルにユーザの実行権限をつけなさい。
 
 ---
 
@@ -119,6 +138,17 @@ $ rosrun beginner_tutorials listener.py
 ## talker.py のポイント
 
 - エディタ等で`talker.py`を見てみる。
+  - `Docker`や`WSL`を使っている場合は基本的には`VSCode`を使う。
+- 日本語が利用できるよう、ファイルの上から２行目に`# -*- coding: utf-8 -*-`と追記ししておくこと。
+
+```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Software License Agreement (BSD License)
+```
+
+以下、重要な部分にコメントをしている。  
+このコメントは元のプログラムには無い。以下とプログラムを見比べながら全体像を把握すること。
 
 ```python
 def talker():
@@ -152,6 +182,17 @@ def talker():
 ## listener.py のポイント
 
 - エディタ等で`listener.py`を見てみる。
+  - `Docker`や`WSL`を使っている場合は基本的には`VSCode`を使う。
+- 日本語が利用できるよう、ファイルの上から２行目に`# -*- coding: utf-8 -*-`と追記ししておくこと。
+
+```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Software License Agreement (BSD License)
+```
+
+以下、重要な部分にコメントをしている。  
+このコメントは元のプログラムには無い。以下とプログラムを見比べながら全体像を把握すること。
 
 ```python
 def callback(data):
@@ -171,77 +212,24 @@ if __name__ == '__main__':
     listener()
 ```
 
-## 問題(3)
+## 問題(1)
 
 - ROS マスター、`talker.py`、`listener.py` を全て`Ctrl+C`で終了させなさい。
 
-## WEB ブラウザからデータを送信する
-
-`ROS`は基本的には`Publisher/Subscriber`という手続きに沿って動くノード同士の通信しかサポートしていない。  
-しかし、[rosbridge_server](http://wiki.ros.org/rosbridge_server)というシステムを使うことで、`TCP/IP`、`UDP`、`WebSocket`という他の通信方式を使い、`ROS`を使っていないプログラムとも通信することができる。
-
-ここでは[rosbridge_server](http://wiki.ros.org/rosbridge_server)に加え、[roswww](http://wiki.ros.org/roswww)という WEB サーバを起動する`ROS`ノードを使い、 WEB ブラウザと`ROS`ノード間の通信について実験する。
-
-1. 以下のディレクトリを作成しなさい。
-
-```shell
-$ roscd beginner_tutorials
-$ pwd
-/home/[user name]/catkin_ws/src/beginner_tutorials
-$ mkdir launch www
-```
-
-2. [web_py.launch](./basics_01/web_py.launch)を`~/catkin_ws/src/beginner_tutorials/launch`にダウンロードしなさい。
-
-```shell
-$ roscd beginner_tutorials/launch
-$ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/basics_01/web_py.launch -O web_py.launch
-```
-
-3. [index.html](./basics_01/index.html)を`~/catkin_ws/src/beginner_tutorials/www`にダウンロードしなさい。
-
-```shell
-$ roscd beginner_tutorials/www
-$ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/basics_01/index.html -O index.html
-```
-
-4. ターミナルで起動している全てのソフトを終了してから下記コマンドを実行しなさい。
-
-```shell
-$ roslaunch beginner_tutorials web_py.launch
-... logging to /home/[user name]/.ros/log/38823204-1f3e-11ec-a97a-80fa5b7fbe40/roslaunch-MyComputer-13226.log
-Checking log directory for disk usage. This may take a while.
-
-SUMMARY
-========
-...省略...
-2021-09-27 11:54:28+0900 [-] WebSocketServerFactory starting on 9090
-2021-09-27 11:54:28+0900 [-] Starting factory <autobahn.twisted.websocket.WebSocketServerFactory object at 0x7f73633f87d0>
-2021-09-27 11:54:28+0900 [-] [INFO] [1632711268.107163]: Rosbridge WebSocket server started at ws://0.0.0.0:9090
-```
-
-5. WEBブラウザで[http://localhost:8085/beginner_tutorials/](http://localhost:8085/beginner_tutorials/)にアクセスしなさい。以下のような画面が見えるはずである。
-
-![2021-09-27_115642.png](./basics_01/2021-09-27_115642.png)
-
-6. ブラウザ上のテキストボックスに適当な文字を入れ、ボタンを押すと、`web_py.launch`を実行した端末上にブラウザから送信した文字が表示される。
-
-7. 実験が終わったら、全てのターミナルのソフトとWEBブラウザの[http://localhost:8085/beginner_tutorials/](http://localhost:8085/beginner_tutorials/)を表示しているタブを閉じなさい。
-
 ---
 
-## 問題(4)
+## 問題(2)
 
 - `talker.py`を次のように変更しなさい。
 
-### 修正(4-1)
+### 修正(2-1)
 
 ```python
 from std_msgs.msg import String
 from std_msgs.msg import Int32 # 追記
 ```
 
-### 修正(4-2)
+### 修正(2-2)
 
 ```python
 pub = rospy.Publisher('chatter', String, queue_size=10)
@@ -251,7 +239,7 @@ number = 0 # 追記
 
 ---
 
-### 修正(4-3)
+### 修正(2-3)
 
 ```python
 pub.publish(hello_str)
@@ -265,25 +253,25 @@ number = (number + 1) % 40 # 追記
 
 ---
 
-## 問題(5)
+## 問題(3)
 
 - `listener.py`を次のように編集し、実行結果を確認しなさい。
 
-### 修正(5-1)
+### 修正(3-1)
 
 ```python
 from std_msgs.msg import String
 from std_msgs.msg import Int32 #追記
 ```
 
-### 修正(5-2)
+### 修正(3-2)
 
 ```python
 rospy.Subscriber('chatter', String, callback)
 rospy.Subscriber('number', Int32, callbackInt32) # 追記
 ```
 
-### 修正(5-3)
+### 修正(3-3)
 
 ```python
 def callback(data):
@@ -293,7 +281,7 @@ def callbackInt32(data): # 追記
     rospy.loginfo(rospy.get_caller_id() + 'I heard %d', data.data) # 追記
 ```
 
-## 問題(6)
+## 問題(4)
 
 `listener.py`の`callbackInt32(data)`を受信したデータに応じて以下のような出力をするように変更してください。
 
@@ -304,4 +292,4 @@ def callbackInt32(data): # 追記
 
 ---
 
-[ROS(1)](./basics_01.md)
+[ROS の概要](./basics_01.md)

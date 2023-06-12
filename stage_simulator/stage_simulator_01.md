@@ -8,7 +8,7 @@
 
 - ネイティブな Linux に ROS その他の必要なソフトを[インストール](https://github.com/KMiyawaki/setup_robot_programming)する。
 - [シミュレータ](https://github.com/KMiyawaki/oit_navigation_minibot_light_01)もインストールしておくこと。
-- 仮想環境（WSL、Virtual Box）でも実行可能。
+- 仮想環境（Docker、WSL、Virtual Box）でも実行可能。
 
 ## 実習で使うシミュレータのインストール
 

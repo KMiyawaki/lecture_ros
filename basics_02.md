@@ -1,4 +1,4 @@
-# ROS(2)
+# ROS1で複数PCを通信させる
 
 [README](./README.md)
 

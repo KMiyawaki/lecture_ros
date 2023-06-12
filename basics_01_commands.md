@@ -27,6 +27,7 @@ $ rostopic list
 /chatter
 /rosout
 /rosout_agg
+/statistics
 ```
 
 ---

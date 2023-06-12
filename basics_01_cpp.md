@@ -1,6 +1,6 @@
-# ROS(1) C++
+# 簡単なパブリッシャとサブスクライバの作成(2) C++
 
-[ROS(1)](./basics_01.md)
+[ROS の概要](./basics_01.md)
 
 ---
 
@@ -318,4 +318,4 @@ void numberCallback(const std_msgs::Int32::ConstPtr& msg)
 
 ---
 
-[ROS(1)](./basics_01.md)
+[ROS の概要](./basics_01.md)
