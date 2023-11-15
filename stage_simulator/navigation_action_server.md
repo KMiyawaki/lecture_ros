@@ -6,7 +6,12 @@
 
 ## シミュレータを起動する
 
-前頁[Stage Simulator (1)](./stage_simulator_01.md)に従って、シミュレータを起動しておく。
+[Stage Simulator (1)](./stage_simulator_01.md)に従って、以下のコマンドでシミュレータを起動しておく。  
+これは`Linux`の`GUI`デスクトップのターミナルから実行すること。
+
+```shell
+$ roslaunch oit_navigation_minibot_light_01 stage_navigation.launch
+```
 
 ## ロボットをコマンドで動かす
 

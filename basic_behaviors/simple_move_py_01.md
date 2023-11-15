@@ -37,7 +37,14 @@ $ ls -l
 ### 実行順序
 
 - まず、[シミュレータを起動する](../stage_simulator/stage_simulator_01.md)
+- これは`Linux`の`GUI`デスクトップのターミナルから実行すること。
+
+```shell
+$ roslaunch oit_navigation_minibot_light_01 stage_navigation.launch
+```
+
 - しばらくしてから`simple_move.py`を実行する。
+- これは`VSCode`のコマンドターミナルから実行しても構わない。
 
 ```shell
 $ rosrun beginner_tutorials simple_move.py
