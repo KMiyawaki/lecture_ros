@@ -10,13 +10,13 @@
 
 ```shell
 $ sudo apt update
-$ sudo apt-get install -y ros-melodic-turtlesim
+$ sudo apt-get install -y ros-noetic-turtlesim
 [sudo] password for [user name]: # パスワード入力 
 Reading package lists... Done
 Building dependency tree       
  ...
-Unpacking ros-melodic-turtlesim (0.9.3-1bionic.20210505.020231) ...
-Setting up ros-melodic-turtlesim (0.9.3-1bionic.20210505.020231) ...
+Unpacking ros-noetic-turtlesim (0.9.3-1bionic.20210505.020231) ...
+Setting up ros-noetic-turtlesim (0.9.3-1bionic.20210505.020231) ...
 ```
 
 ## ROS とは
@@ -88,7 +88,7 @@ SUMMARY
 ========
 
 PARAMETERS
- * /rosdistro: melodic
+ * /rosdistro: noetic
  * /rosversion: 1.14.3
 
 NODES
@@ -103,7 +103,7 @@ started core service [/rosout]
 ```
 
 - 出力されたメッセージを確認すること。
-  - `melodic`という文字が出ているはず。
+  - `noetic`という文字が出ているはず。
 
 ### Melodic Morenia
 
@@ -130,7 +130,7 @@ catkin_ws # この表示があれば、ワークスペースは存在してい�
 $ mkdir -p ~/catkin_ws/src
 $ cd ~/catkin_ws/src
 $ catkin_init_workspace
-Creating symlink "/home/[user name]/catkin_ws/src/CMakeLists.txt" pointing to "/opt/ros/melodic/share/catkin/cmake/toplevel.cmake"
+Creating symlink "/home/[user name]/catkin_ws/src/CMakeLists.txt" pointing to "/opt/ros/noetic/share/catkin/cmake/toplevel.cmake"
 $ cd ~/catkin_ws/
 $ catkin_make
 Base path: /home/[user name]/catkin_ws
@@ -217,10 +217,10 @@ $ roscd beginner_tutorials
 ```shell
 $ roscd turtlesim
 $ pwd
-/opt/ros/melodic/share/turtlesim
+/opt/ros/noetic/share/turtlesim
 $ roscd rviz
 $ pwd
-/opt/ros/melodic/share/rviz
+/opt/ros/noetic/share/rviz
 $ roscd beginner_tutorials
 ```
 

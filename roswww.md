@@ -4,11 +4,11 @@
 
 ```shell
 $ sudo apt update
-$ sudo apt install ros-melodic-roswww -y
+$ sudo apt install ros-noetic-roswww -y
 $ cd ~/setup_robot_programming
 $ ./install_ros_web.sh
 # 実行結果
-Start install ros-melodic web packages
+Start install ros-noetic web packages
 [sudo] password for oit: # パスワード入力
 Reading package lists... Done
 ・・・

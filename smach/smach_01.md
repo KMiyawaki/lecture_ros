@@ -12,11 +12,11 @@
 
 ```shell
 $ sudo apt update
-$ sudo apt-get install ros-melodic-smach
-$ sudo apt-get install ros-melodic-smach-viewer
+$ sudo apt-get install ros-noetic-smach
+$ sudo apt-get install ros-noetic-smach-viewer
 ```
 
-- `ros-melodic-smach-viewer`をインストールする際にスクリプトが入らない場合があるので、一度`rosrun`して確認する。
+- `ros-noetic-smach-viewer`をインストールする際にスクリプトが入らない場合があるので、一度`rosrun`して確認する。
 - `roscore`起動後に下記のコマンドを実行。
 
 ```shell

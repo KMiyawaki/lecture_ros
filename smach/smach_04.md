@@ -74,7 +74,7 @@ move_base_goal.target_pose.pose.orientation.w = 1.0
 
 - ロボットがコマンド受信時やエラー発生時にテキストでメッセージをトピックとして`publish`できるようにしなさい。
   - （例）`recv command living`、`unknown command XXX`など。
-- トピック名は`robot_message`とし、型は[`std_msgs/String`](http://docs.ros.org/en/melodic/api/std_msgs/html/msg/String.html)で`publish`しなさい。
+- トピック名は`robot_message`とし、型は[`std_msgs/String`](http://docs.ros.org/en/noetic/api/std_msgs/html/msg/String.html)で`publish`しなさい。
 - 動作テストは`$ rostopic echo /robot_message`としてロボットから発信されたメッセージを表示することで行いなさい。
 - 動作が確認できたら`talker.py`を`input`関数でキーボードからコマンド入力し、ロボットから受け取ったメッセージは画面に表示できるように改良しなさい。
 
