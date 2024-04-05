@@ -47,9 +47,9 @@ $ rosrun beginner_tutorials simple_move_with_localization.py
 
 - 起動したら、コマンドターミナルの画面をよく観察すること。ロボットが２秒間直進して停止する。その間自己位置推定による座標情報が出力されるはずである。
 
-## 問題
+## 課題
 
-### 問題（１）
+### 課題（１）
 
 - `go_straight_by_distance_with_localization`関数を完成させなさい。
   - 仮引数`distance`で指定した距離だけ進むようにする。手順は次の通り。
@@ -64,7 +64,7 @@ $ rosrun beginner_tutorials simple_move_with_localization.py
 [INFO] [1634615851.957260, 1147.675000]: Recv localized pose. (x, y, theta) d = (8.15, 1.01, 89.42) 1.02
 ```
 
-### 問題（２）
+### 課題（２）
 
 - `go_straight_by_distance_with_localization`関数をコピーし、`turn_by_angle_with_localization`という、指定した角度だけ旋回する関数を作りなさい。全問同様、自己位置推定の結果を使います。
   - 引数名は変えた方が良い（`linear_vel`：直進速度、`angular_vel`：回転速度）。
@@ -77,7 +77,7 @@ def turn_by_angle_with_localization(listener, angle, time_limit=999, angular_vel
 - 角度の場合は距離のときと異なり、－180度～＋180度で表現される点に注意が必要です。
 - これらの注意点は[オドメトリを使ったとき](./simple_move_py_02.md#問題２)と全く同じです。
 
-### 問題（３）
+### 課題（３）
 
 - `go_straight_by_distance_with_localization`、`turn_by_angle_with_localization`を使って、ロボットを四角形を描くように移動させてみよう。直進->90 度回転->直進・・・。時計回りに動いてから反時計回りに動くなど。
   - シミュレーションのロボットは自分の都合の良い位置に自由に移動させて構わない。

@@ -1,6 +1,6 @@
 # move_base にコマンドを送る (C++)
 
-[ROS navigation の Action Server を使う](./navigation_action_server.md)
+[ROS navigation の Action Server を使う](./Home.md)
 
 ---
 
@@ -128,7 +128,7 @@ void func3(Test& refT); // 参照を仮引数にする。
   - ここで「ロボットの方向」とは`map`座標系での角度を意味しており、マイナス180度～プラス180度で表す。
   - RViz で 3D ビューをズームしたとき、`map`と書かれた座標軸が見える。その X 軸方向がゼロ度で、反時計回りがプラスである。
 
-![2020-10-13_081605.png](./navigation_action_server/2020-10-13_081605.png)
+![2020-10-13_081605.png](./2020-10-13_081605.png)
 
 - 360度表記からラジアンに変換するには`#include <angles/angles.h>`を加えて、`angles::from_degrees`を使う。`angles::from_degrees`は`main`関数から`goto_point`の呼び出し時に使う。
 - 角度`theta`を使って、ロボットを指定した方向に向かせるには、
@@ -161,4 +161,4 @@ void func3(Test& refT); // 参照を仮引数にする。
 
 ---
 
-[ROS navigation の Action Server を使う](./navigation_action_server.md)
+[ROS navigation の Action Server を使う](./Home.md)

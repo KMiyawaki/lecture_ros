@@ -1,6 +1,6 @@
 # ROS navigation の Action Server を使う
 
-[README](./README.md)
+[README](../README.md)
 
 ---
 
@@ -83,4 +83,4 @@ block( pose [ 3 -1 0 0] color "blue")
 
 ---
 
-[README](./README.md)
+[README](../README.md)

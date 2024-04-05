@@ -64,7 +64,7 @@ $ rosrun beginner_tutorials simple_move
 
 - 起動したら、`Stage simulator`の画面と`rviz`の画面をよく観察すること。ロボットが２秒間直進して停止するはずである。
 
-## 問題
+## 課題
 
 - `simple_move.cpp`を修正し、直進->その場で（大体でよい）１回転-> 直進 という行動をさせなさい。
   - まずは`go_straight_by_time`関数をコピーし、`turn_by_time`という関数を作ってみよう。

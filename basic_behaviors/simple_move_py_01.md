@@ -53,9 +53,9 @@ $ rosrun beginner_tutorials simple_move.py
 
 - 起動したら、`Stage simulator`の画面と`rviz`の画面をよく観察すること。ロボットが２秒間直進して停止するはずである。
 
-## 問題
+## 課題
 
-### 問題（１）
+### 課題（１）
 
 - `simple_move.py`を修正し、直進->その場で（大体でよい）１回転-> 直進 という行動をさせなさい。
   - まずは`go_straight_by_time`関数をコピーし、`turn_by_time`という関数を作ってみよう。
@@ -67,7 +67,7 @@ $ rosrun beginner_tutorials simple_move.py
 def turn_by_time(time_limit, angular_vel=???, cmd_vel="/cmd_vel"): # 初期値はどうする？
 ```
 
-### 問題（２）
+### 課題（２）
 
 - ロボットを四角形を描くように移動させてみよう。直進->90 度回転->直進・・・。時計回りに動いてから反時計回りに動くなど。
   - シミュレーションのロボットは自分の都合の良い位置に自由に移動させて構わない。

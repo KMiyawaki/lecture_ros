@@ -1,7 +1,7 @@
 
 # マップ上の座標の調べ方
 
-[smach/Home](Home.md)
+[README](./README.md)
 
 ---
 
@@ -41,4 +41,4 @@ point:
 
 ---
 
-[smach/Home](Home.md)
+[README](./README.md)

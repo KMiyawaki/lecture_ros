@@ -42,9 +42,9 @@ $ rosrun beginner_tutorials simple_move
 
 - 起動したら、コマンドターミナルの画面をよく観察すること。オドメトリによる座標情報が出力されるはずである。
 
-## 問題
+## 課題
 
-### 問題（１）
+### 課題（１）
 
 - `go_straight_by_distance`関数を完成させなさい。
   - 仮引数`distance`で指定した距離だけ進むようにする。手順は次の通り。
@@ -59,7 +59,7 @@ $ rosrun beginner_tutorials simple_move
 [INFO] [1634615851.957260, 1147.675000]: Recv odometry. (x, y, theta) d = (8.15, 1.01, 89.42) 1.02
 ```
 
-### 問題（２）
+### 課題（２）
 
 - `go_straight_by_distance`関数をコピーし、`turn_by_angle`という、指定した角度だけ旋回する関数を作りなさい。
   - 引数名は変えた方が良い（`linear_vel`：直進速度、`angular_vel`：回転速度）。
@@ -83,7 +83,7 @@ double d = fabs(angles::normalize_angle(yaw - yaw_pre));
 yaw_pre = yaw
 ```
 
-### 問題（３）
+### 課題（３）
 
 - `turn_by_angle`、`go_straight_by_distance`を使って、ロボットを四角形を描くように移動させてみよう。直進->90 度回転->直進・・・。時計回りに動いてから反時計回りに動くなど。
   - シミュレーションのロボットは自分の都合の良い位置に自由に移動させて構わない。
