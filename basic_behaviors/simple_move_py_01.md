@@ -40,7 +40,7 @@ $ ls -l
 - これは`Linux`の`GUI`デスクトップのターミナルから実行すること。
 
 ```shell
-$ roslaunch oit_navigation_minibot_light_01 stage_navigation.launch
+$ roslaunch oit_smartbot_diff_02 stage_navigation.launch
 ```
 
 - しばらくしてから`simple_move.py`を実行する。

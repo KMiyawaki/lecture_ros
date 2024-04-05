@@ -17,7 +17,7 @@
 ```shell
 $ cd ~/catkin_ws/src/
 $ ls|grep minibot_light
-oit_navigation_minibot_light_01 # この表示があればインストール済み。
+oit_smartbot_diff_02 # この表示があればインストール済み。
 ```
 
 なければ下記コマンドでインストールしておく。
@@ -34,9 +34,9 @@ $ cd ~/catkin_ws && catkin_make
 - ターミナルを全て閉じて開き直し、以下のコマンドを実行。
 
 ```shell
-$ roslaunch oit_navigation_minibot_light_01 stage_navigation.launch
+$ roslaunch oit_smartbot_diff_02 stage_navigation.launch
 # もしも、独自に作成したシミュレーションのマップを使いたい場合は次のオプションをつける。
-# $ roslaunch oit_navigation_minibot_light_01 stage_navigation.launch map_name:=rouka1
+# $ roslaunch oit_smartbot_diff_02 stage_navigation.launch map_name:=rouka1
 ... logging to /home/[user name]/.ros/log/ebe20526-4944-11ea-a3d0-000c2924787d/roslaunch-ubuntu-16196.log
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt

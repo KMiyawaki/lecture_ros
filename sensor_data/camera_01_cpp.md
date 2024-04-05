@@ -105,7 +105,7 @@ data: "R 2376"
 
 ```shell
 $ roscd beginner_tutorials
-$ rosrun oit_navigation_minibot_light_01 image_capture.py 
+$ rosrun oit_smartbot_diff_02 image_capture.py 
 [INFO] [1638608939.180082]: Saved sample.jpg # 保存に成功 
 ```
 
