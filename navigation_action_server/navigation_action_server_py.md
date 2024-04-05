@@ -50,8 +50,8 @@ coord_type = "base_link" # ロボットローカル座標系
 を
 coord_type = "map" # マップ座標系
 にして、以下を追記編集する。
-goal.target_pose.pose.position.x = 7.0 #（x 座標変更）
-goal.target_pose.pose.position.y = 3.0 # (y 座標追記）
+goal.target_pose.pose.position.x = 2.58 #（x 座標変更）
+goal.target_pose.pose.position.y = 1.2 # (y 座標追記）
 ```
 
 ## 練習問題
