@@ -75,9 +75,9 @@ $ rosrun beginner_tutorials simple_move_with_localization
 
 - 起動したら、コマンドターミナルの画面をよく観察すること。ロボットが２秒間直進して停止する。その間自己位置推定による座標情報が出力されるはずである。
 
-## 問題
+## 課題
 
-### 問題（１）
+### 課題（１）
 
 - `go_straight_by_distance_with_localization`関数を完成させなさい。
   - 仮引数`distance`で指定した距離だけ進むようにする。手順は次の通り。
@@ -92,7 +92,7 @@ $ rosrun beginner_tutorials simple_move_with_localization
 [INFO] [1634615851.957260, 1147.675000]: Recv localized pose. (x, y, theta) d = (8.15, 1.01, 89.42) 1.02
 ```
 
-### 問題（２）
+### 課題（２）
 
 - `go_straight_by_distance_with_localization`関数をコピーし、`turn_by_angle_with_localization`という、指定した角度だけ旋回する関数を作りなさい。全問同様、自己位置推定の結果を使います。
   - 引数名は変えた方が良い（`linear_vel`：直進速度、`angular_vel`：回転速度）。
@@ -106,20 +106,12 @@ void turn_by_angle_with_localization(ros::NodeHandle& n, tf::TransformListener &
 - 角度の場合は距離のときと異なり、－180度～＋180度で表現される点に注意が必要です。
 - これらの注意点は[オドメトリを使ったとき](./simple_move_cpp_02.md#問題２)と全く同じです。
 
-### 問題（３）
+### 課題（３）
 
 - `go_straight_by_distance_with_localization`、`turn_by_angle_with_localization`を使って、ロボットを四角形を描くように移動させてみよう。直進->90 度回転->直進・・・。時計回りに動いてから反時計回りに動くなど。
   - シミュレーションのロボットは自分の都合の良い位置に自由に移動させて構わない。
 - 作成したプログラムを実機でも試してみよう。オドメトリのときと比べてどうだろうか。
   - 実機の場合は[ナビゲーション起動コマンド](https://github.com/KMiyawaki/oit_navigation_minibot_light_01#%E3%83%8A%E3%83%93%E3%82%B2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3)を実行してから自分のプログラムを実行すること。
-
-### 問題（４）
-
-- [move_base にコマンドを送る (C++)](../stage_simulator/navigation_action_server_cpp.md)で作成したナビゲーションと組み合わせて、次のようなプログラムを作成してください。
-  - ナビゲーションである地点まで行く。
-  - その地点で特定の方向にロボットを向ける。
-    - これは、`turn_by_angle_with_localization`を使って、苦労しても良いですが、指定した方向を向く関数を新たに実装しても構いません。
-  - ナビゲーションに頼らず直進し、狭い隙間を通り抜ける。
 
 ---
 

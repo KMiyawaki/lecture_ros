@@ -94,6 +94,14 @@ goal.target_pose.pose.position.y = 3.0 # (y 座標追記）
     goal.target_pose.pose.orientation = Quaternion(q[0], q[1], q[2], q[3])
   ```
 
+### 課題（３）
+
+- [指定した距離・角度だけ動く（自己位置推定）(Python)](../basic_behaviors/simple_move_py_03.md)で作成したナビゲーションと組み合わせて、次のようなプログラムを作成してください。
+  - ナビゲーションである地点まで行く。
+  - その地点で特定の方向にロボットを向ける。
+    - これは、`turn_by_angle_with_localization`を使って、苦労しても良いですが、指定した方向を向く関数を新たに実装しても構いません。
+  - ナビゲーションに頼らず直進し、狭い隙間を通り抜ける。
+
 ## 参考
 
 - [ROS×Python 勉強会：ウェイポイントナビゲーション(ActionLib：Python)](http://demura.net/lecture/12433.html)

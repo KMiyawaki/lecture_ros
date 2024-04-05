@@ -1,12 +1,12 @@
 # ROS navigation の Action Server を使う
 
-[stage_simulator/Home](Home.md)
+[README](./README.md)
 
 ---
 
 ## シミュレータを起動する
 
-[Stage Simulator (1)](./stage_simulator_01.md)に従って、以下のコマンドでシミュレータを起動しておく。  
+以下のコマンドでシミュレータを起動しておく。  
 これは`Linux`の`GUI`デスクトップのターミナルから実行すること。
 
 ```shell
@@ -83,4 +83,4 @@ block( pose [ 3 -1 0 0] color "blue")
 
 ---
 
-[stage_simulator/Home](Home.md)
+[README](./README.md)

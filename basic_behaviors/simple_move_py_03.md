@@ -84,14 +84,6 @@ def turn_by_angle_with_localization(listener, angle, time_limit=999, angular_vel
 - 作成したプログラムを実機でも試してみよう。オドメトリのときと比べてどうだろうか。
   - 実機の場合は[ナビゲーション起動コマンド](https://github.com/KMiyawaki/oit_navigation_minibot_light_01#%E3%83%8A%E3%83%93%E3%82%B2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3)を実行してから自分のプログラムを実行すること。
 
-### 問題（４）
-
-- [move_base にコマンドを送る (Python)](../stage_simulator/navigation_action_server_py.md)で作成したナビゲーションと組み合わせて、次のようなプログラムを作成してください。
-  - ナビゲーションである地点まで行く。
-  - その地点で特定の方向にロボットを向ける。
-    - これは、`turn_by_angle_with_localization`を使って、苦労しても良いですが、指定した方向を向く関数を新たに実装しても構いません。
-  - ナビゲーションに頼らず直進し、狭い隙間を通り抜ける。
-
 ---
 
 [基本的な動作](./Home.md)

@@ -76,12 +76,12 @@ Setting up ros-noetic-turtlesim (0.9.3-1bionic.20210505.020231) ...
 ```shell
 $ roscore
 ... logging to /home/[user name]/.ros/log/9474a7ce-4941-11ea-a3d0-000c2924787d/roslaunch-ubuntu-7288.log
-Checking log directory for disk usage. This may take awhile.
+Checking log directory for disk usage. This may take a while.
 Press Ctrl-C to interrupt
 Done checking log file disk usage. Usage is <1GB.
 
-started roslaunch server http://ubuntu:34303/
-ros_comm version 1.14.3
+started roslaunch server http://6343d02383a2:35833/
+ros_comm version 1.16.0
 
 
 SUMMARY
@@ -89,16 +89,16 @@ SUMMARY
 
 PARAMETERS
  * /rosdistro: noetic
- * /rosversion: 1.14.3
+ * /rosversion: 1.16.0
 
 NODES
 
 auto-starting new master
-process[master]: started with pid [7299]
-ROS_MASTER_URI=http://ubuntu:11311/
+process[master]: started with pid [24772]
+ROS_MASTER_URI=http://6343d02383a2:11311/
 
-setting /run_id to 9474a7ce-4941-11ea-a3d0-000c2924787d
-process[rosout-1]: started with pid [7310]
+setting /run_id to 0011c6fe-f331-11ee-93ce-0242ac120002
+process[rosout-1]: started with pid [24801]
 started core service [/rosout]
 ```
 

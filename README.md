@@ -4,6 +4,7 @@
 - [Stage simulator](./stage_simulator/Home.md)
   - [マップ上の座標の調べ方](./how_to_get_coordinates.md)
 - [基本的な動作](./basic_behaviors/Home.md)
+- [ROS navigation の Action Server を使う](./navigation_action_server/Home.md)
 - [センサデータ](./sensor_data/Home.md)
 - ROS Parameter
   - [Python](parameter_py.md)
