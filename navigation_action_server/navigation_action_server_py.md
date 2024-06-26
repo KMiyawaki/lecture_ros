@@ -16,10 +16,10 @@ $ cd scripts
 ```
 
 - `scripts`に下記ファイルをダウンロードする。リンククリック->右クリック保存もしくは、リンクの下方に記述してある`wget`コマンドで取得する。
-  - [simple_navigation_goals.py](https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/stage_simulator/navigation_action_server/simple_navigation_goals.py)
+  - [simple_navigation_goals.py](https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/navigation_action_server/simple_navigation_goals.py)
 
 ```shell
-$ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/stage_simulator/navigation_action_server/simple_navigation_goals.py -O simple_navigation_goals.py
+$ wget https://raw.githubusercontent.com/KMiyawaki/lecture_ros/main/navigation_action_server/simple_navigation_goals.py -O simple_navigation_goals.py
 ・・・
 simple_navigation_goals.py                         100%[===============================================================================================================================>]   1.16K  --.-KB/s    in 0s      
 
