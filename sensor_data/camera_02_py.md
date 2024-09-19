@@ -33,6 +33,11 @@ $ ls -l
 ### 実行順序
 
 - まず、[シミュレータを起動する](../stage_simulator/stage_simulator_01.md)
+
+```shell
+$ roslaunch oit_navigation_minibot_light_01 stage_navigation.launch
+```
+
 - しばらくしてから`color_tracking.py`を実行する。
 
 ```shell
