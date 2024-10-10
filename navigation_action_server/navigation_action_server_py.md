@@ -32,7 +32,13 @@ simple_navigation_goals.py                         100%[========================
 $ chmod u+x simple_navigation_goals.py
 ```
 
-- シミュレータを起動しておいてからスクリプトを実行する。
+- まず、シミュレータを起動する。
+
+```shell
+$ roslaunch oit_navigation_minibot_light_01 stage_navigation.launch
+```
+
+- 次にスクリプトを実行する。
 
 ```shell
 $ rosrun beginner_tutorials simple_navigation_goals.py
