@@ -30,7 +30,7 @@ $ ls -l
 
 ### 実行順序
 
-- まず、[シミュレータを起動する](../stage_simulator/stage_simulator_01.md)
+- まず、[シミュレータを起動する](./stage_simulator/Home.md)
 - しばらくしてから`recv_commands.py`を実行する。
 
 ```shell
