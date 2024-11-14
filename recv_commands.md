@@ -83,8 +83,14 @@ publishing and latching message for 3.0 seconds
 
 - go_forward 1.2：1.2m進む。
 - go_back 0.9：0.9m後退する。
+- turn_left 30：30度回転する。
+- turn_right 40：-40度回転する。
 - move 7 4：座標（7,4）に自律移動する。到着後の方向は任意。
 - move -2 -8 95：座標（-2,-8）に自律移動し、向きは95度で止まる。
+
+ここまでできたら、複数のコマンドをまとめて送信することで、連続した動作ができるようにもしてみましょう。
+
+- （例）rostopic pub -1 /chatter std_msgs/String "data: 'go_forward 1.2 turn_right 40'"： 1.2m直進し、-40度回転する。
 
 ## 問題(3)
 
