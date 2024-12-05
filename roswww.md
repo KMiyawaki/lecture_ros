@@ -5,8 +5,8 @@
 ```shell
 $ sudo apt update
 $ sudo apt install ros-noetic-roswww -y
-$ cd ~/setup_robot_programming
-$ ./install_ros_web.sh
+$ cd ~/setup_robot_programming/ros1
+$ ./install_ros1_web.sh
 # 実行結果
 Start install ros-noetic web packages
 [sudo] password for oit: # パスワード入力
